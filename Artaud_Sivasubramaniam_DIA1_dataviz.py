@@ -8,14 +8,31 @@ from geopy.geocoders import Nominatim
 
 df = pd.read_csv("Life Expectancy Data.csv")
 
-########## Header ##########
+########## Title ##########
 
-st.write('# Dataviz project')
-st.write('## ARTAUD Lucas & SIVASUBRAMANIAM Iswarya DIA 1')
+# Reducing margins
+st.markdown(
+    """
+    <style>
+        body {
+            margin: 0;
+        }
+        .block-container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.title('Dataviz project')
+st.header('ARTAUD Lucas & SIVASUBRAMANIAM Iswarya DIA 1', divider=False)
 
 ########## Context and motivation ##########
 
-st.write('## Context and motivation')
+st.header('Context and motivation', divider='blue')
 st.write('The data set chosen is a statistical data on factors influencing Life Expectancy. The data comes from the World Helath Organization for a period of time of 15 years.')
 st.write('Many studies in the past have explored the factors influencing life expectancy, centering around demographic variables, income composition, and mortality rates. However, these studies often neglected the impact of immunization and the Human Development Index. Additionally, some prior research relied on a one-year dataset for all countries but doing this research r a period of time of 15 year enables us to visualise the changes over time. This data set allows us to do a country based observation to identify the main factors that are contributing to lower life expectancy.')
 st.write('This data-set counts health factors of 193 countries over 15 years (2000-2015). We have 22 columns and 2938 rows.')
@@ -69,7 +86,7 @@ df = pd.merge(df, unique_countries, on='Country', how='left')
 
 ########## 1. Average life expectancy and population over the years ##########
 
-st.write('## 1. Average life expectancy and population over the years')
+st.header('1. Average life expectancy and population over the years', divider='blue')
 
 average_life_expectancy_yearly = df.groupby('Year')['Life expectancy '].mean().reset_index()
 average_population_yearly = df.groupby('Year')['Population'].mean().reset_index()
@@ -100,7 +117,7 @@ st.plotly_chart(fig1, use_container_width=True)
 
 ########## 2. Life Expectancy over the years of the top 10 and bottom 10 countries ##########
 
-st.write('## 2. Life Expectancy over the years of the top 10 and bottom 10 countries')
+st.header('2. Life Expectancy over the years of the top 10 and bottom 10 countries', divider='blue')
 
 average_life_expectancy = df.groupby('Country')['Life expectancy '].mean().reset_index() # calcultae the average life expectancy
 top10_countries = average_life_expectancy.nlargest(5, 'Life expectancy ') # take the top 10 average life expectancy
@@ -124,7 +141,7 @@ st.plotly_chart(fig2, use_container_width=True)
 
 ########## 3. Violin Plot for Life Expectancy by Continent ##########
 
-st.write('## 3. Violin Plot for Life Expectancy by Continent')
+st.header('3. Violin Plot for Life Expectancy by Continent', divider='blue')
 
 fig3 = px.violin(df, x='Continent', y='Life expectancy ', color='Continent', box=True, title='Violin Plot for Life Expectancy and Population by Continent')
 
@@ -142,7 +159,7 @@ st.plotly_chart(fig3, use_container_width=True)
 
 ########## 4. Pie chart for the distribution of countries by Status ##########
 
-st.write('## 4. Pie chart for the distribution of countries by Status')
+st.header('4. Pie chart for the distribution of countries by Status', divider='blue')
 
 fig4 = px.pie(
     df, 
@@ -164,7 +181,7 @@ st.plotly_chart(fig4, use_container_width=True)
 
 ########## 5. Comparing the GDP from 2000 to 2015 by the status ##########
 
-st.write('## 5. Comparing the GDP from 2000 to 2015 by the status')
+st.header('5. Comparing the GDP from 2000 to 2015 by the status', divider='blue')
 
 df_gdp_avg=df.groupby(['Year', 'Status'])['GDP'].mean().reset_index()
 
@@ -175,7 +192,7 @@ st.plotly_chart(fig5, use_container_width=True)
 
 ########## 6. Comparing the life expectancy from 2000 to 2015 by the status ##########
 
-st.write('## 6. Comparing the life expectancy from 2000 to 2015 by the status')
+st.header('6. Comparing the life expectancy from 2000 to 2015 by the status', divider='blue')
 
 fig6 = px.box(df, x='Status', y='Life expectancy ',title='Life Expectancy Distribution by Status (2000 to 2015)',animation_frame='Year',category_orders={'Year': sorted(df['Year'].unique())},labels={'Life expectancy': 'Life Expectancy', 'Status': 'Development Status'})
 
@@ -190,7 +207,7 @@ st.plotly_chart(fig6, use_container_width=True)
 
 ########## 7. Correlation map in order to study the columns that are influencing the life expectancy ##########
 
-st.write('## 7. Correlation map in order to study the columns that are influencing the life expectancy')
+st.header('7. Correlation map in order to study the columns that are influencing the life expectancy', divider='blue')
 
 numeric_columns = df.select_dtypes(include=['float64']).columns # Filtering the non-numeric columns in order to do a correlation
 correlation_matrix = df[numeric_columns].corr()
@@ -208,7 +225,7 @@ st.plotly_chart(fig7, use_container_width=True)
 
 ########## 8. Correlation between schooling and life expectancy by continent ##########
 
-st.write('## 8. Correlation between schooling and life expectancy by continent')
+st.header('8. Correlation between schooling and life expectancy by continent', divider='blue')
 
 fig8 = px.scatter(df, x='Schooling', y='Life expectancy ', trendline="ols",title='Scatter Plot of Schooling vs Life Expectancy',labels={'Schooling': 'Years of Schooling', 'Life expectancy ': 'Life Expectancy'})
 
@@ -228,7 +245,7 @@ st.plotly_chart(fig8, use_container_width=True)
 
 ########## 9. Correlation between income ressources and life expectancy by continent in 2014 ##########
 
-st.write('## 9. Correlation between income ressources and life expectancy by continent in 2014')
+st.header('9. Correlation between income ressources and life expectancy by continent in 2014', divider='blue')
 
 df_2014 = df[df['Year'] == 2014]
 
@@ -246,7 +263,7 @@ st.plotly_chart(fig9, use_container_width=True)
 
 ########## 10. Average BMI by continent ##########
 
-st.write('## 10. Average BMI by continent')
+st.header('10. Average BMI by continent', divider='blue')
 
 df_avg_bmi = df.groupby(['Continent', 'Year'])[' BMI '].mean().reset_index()
 
@@ -262,7 +279,7 @@ st.plotly_chart(fig10, use_container_width=True)
 
 ########## 11. Thinness between 1-19 years old accross countries ##########
 
-st.write('## 11. Thinness between 1-19 years old accross countries')
+st.header('11. Thinness between 1-19 years old accross countries', divider='blue')
 
 fig11 = px.choropleth(
     df,
@@ -292,7 +309,7 @@ st.plotly_chart(fig11, use_container_width=True)
 
 ########## 12. Violin plot on Alcohol Consumption by continent ##########
 
-st.write('## 12. Violin plot on Alcohol Consumption by continent')
+st.header('12. Violin plot on Alcohol Consumption by continent', divider='blue')
 
 fig12 = px.violin(df, x='Continent', y='Alcohol', color='Continent',box=True,title='Violin plot on Alcohol Consumption by continent')
  
@@ -310,7 +327,7 @@ st.plotly_chart(fig12, use_container_width=True)
 
 ########## 13. Comparision on the evolution of HIV and Measles ##########
 
-st.write('## 13. Comparision on the evolution of HIV and Measles')
+st.header('13. Comparision on the evolution of HIV and Measles', divider='blue')
 
 df_hiv_measles = df.groupby('Year')[[' HIV/AIDS', 'Measles ']].sum().reset_index()
 
@@ -338,7 +355,7 @@ st.plotly_chart(fig13, use_container_width=True)
 
 ########## 14. Map on the evolution of Adult Mortality ##########
 
-st.write('## 14. Map on the evolution of Adult Mortality')
+st.header('14. Map on the evolution of Adult Mortality', divider='blue')
 
 fig14 = px.choropleth(
     df,
@@ -368,7 +385,7 @@ st.plotly_chart(fig14, use_container_width=True)
 
 ########## 15. Map on the evolution of under five death to compare ##########
 
-st.write('## 15. Map on the evolution of under five death to compare')
+st.header('15. Map on the evolution of under five death to compare', divider='blue')
 
 fig15 = px.choropleth(
     df,
