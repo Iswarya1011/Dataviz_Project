@@ -129,7 +129,7 @@ fig1.update_layout(
     legend=dict(font=dict(size=16)),
     font=dict(size=15),
     width=1500,
-    height=700,
+    height=800,
     margin=dict(l=20, r=20, t=60, b=20),
 )
 
@@ -157,7 +157,7 @@ fig2.update_layout(
     font=dict(size=15),
     legend=dict(font=dict(size=16)),
     width=1500,
-    height=1000,
+    height=800,
     margin=dict(l=20, r=20, t=60, b=20))
 
 st.plotly_chart(fig2, use_container_width=True)
@@ -176,7 +176,7 @@ fig3.update_layout(
     title_font=dict(size=24),
     font=dict(size=15),
     width=1500,
-    height=1000,
+    height=800,
     margin=dict(l=20, r=20, t=60, b=20),
 )
 
@@ -199,7 +199,7 @@ fig4 = px.pie(
 # Update layout for better readability
 fig4.update_layout(
     width=1500,
-    height=1000,
+    height=800,
     legend_title_text='Development Status',
     legend=dict(font=dict(size=16)),
     title_font=dict(size=24),
@@ -222,7 +222,7 @@ fig5.update_layout(
     font=dict(size=15),
     title_font=dict(size=24),
     legend=dict(font=dict(size=16)),
-    width=1200, 
+    width=1500, 
     height=800,
     yaxis=dict( range=[0, 35000]))
 
@@ -241,8 +241,8 @@ fig6.update_layout(
     font=dict(size=15),
     title_font=dict(size=24),
     legend=dict(font=dict(size=16)),
-    width=1300,
-    height=1000,
+    width=1500,
+    height=800,
     yaxis=dict(range=[35, 90])
 )
 
@@ -262,7 +262,7 @@ fig7 = px.imshow(
     labels=dict(x='Features', y='Features', color='Correlation'),
     title='Correlation Heatmap',
     width=1500,
-    height=1000,
+    height=800,
 )
 fig7.update_layout(title_font=dict(size=24))
 st.plotly_chart(fig7, use_container_width=True)
@@ -278,7 +278,7 @@ fig8.update_layout(
     xaxis_title='Years of Schooling',
     yaxis_title='Life Expectancy',
     width=1500,
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24),
     legend=dict(font=dict(size=16))
@@ -304,7 +304,7 @@ fig9.update_layout(
     xaxis_title='Income Composition of Resources',
     yaxis_title='Life Expectancy',
     width=1500,
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24),
 )
@@ -324,7 +324,7 @@ fig10.update_layout(
     xaxis_title='Continent',
     yaxis_title='Average BMI',
     width=1500,
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24),
     legend=dict(font=dict(size=16))
@@ -358,7 +358,7 @@ fig11.update_geos(
 )
 fig11.update_layout(
     width=1500,  
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24),  
     
@@ -381,7 +381,7 @@ fig12.update_layout(
     font=dict(size=15),
     title_font=dict(size=24),
     width=1500,
-    height=1000,
+    height=800,
 )
 
 st.plotly_chart(fig12, use_container_width=True)
@@ -406,7 +406,7 @@ fig13.update_layout(
     xaxis_title='Year',
     yaxis_title='Number of Deaths',
     width=1500,
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24),
     legend=dict(font=dict(size=16))
@@ -444,7 +444,7 @@ fig14.update_geos(
 )
 fig14.update_layout(
     width=1500,  
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24),  
 )
@@ -477,7 +477,7 @@ fig15.update_geos(
 )
 fig15.update_layout(
     width=1500,  
-    height=1000,
+    height=800,
     font=dict(size=15),
     title_font=dict(size=24)
 )
