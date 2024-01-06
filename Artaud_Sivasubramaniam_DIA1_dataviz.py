@@ -5,8 +5,7 @@ import plotly.graph_objects as go
 import plotly.subplots as sp
 from geopy.geocoders import Nominatim
 
-df = pd.read_csv("Life Expectancy Data.csv")
-unique_countries = pd.read_csv("countries.csv")
+
 
 ########## Title ##########
 
@@ -14,11 +13,8 @@ unique_countries = pd.read_csv("countries.csv")
 st.markdown(
     """
     <style>
-        body {
-            margin: 0;
-        }
         .block-container {
-            max-width: 1000px;
+            max-width: 1500px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -40,9 +36,10 @@ st.write('From our preliminary analysis, population, Hepatitis B and GDP columns
 st.write('The motivation of our project is to analyze the different factors that influences the life expectancy and compare on different scales (between continents, developed / developing etc...).')
 st.write('We hope to learn more about the various factors affecting life expectancy and how those findings can guide public health interventions and policies. Targeted healthcare initiatives could be guided, for instance, by identifying particular regions or demographic groups experiencing challenges with life expectancy. Furthermore, knowledge of how social determinants, economic variables, and immunizations affect life expectancy can support evidence-based decision-making at the national and international levels. )')
 
-########## Creation of a new column continent ##########
+########## Creation of new columns ##########
 
-# With the library pycountry_convert we are going to create a new column "Continent" that will correspond to the continent of the country.
+df = pd.read_csv("Life Expectancy Data.csv")
+unique_countries = pd.read_csv("countries.csv")
 
 continent_name = {
     'AF': 'Africa',
@@ -57,8 +54,6 @@ continent_name = {
 # Replacing the special cases
 df['Country'] = df['Country'].replace({'Bolivia (Plurinational State of)': 'Bolivia', 'Iran (Islamic Republic of)': 'Iran', 'Micronesia (Federated States of)':'Micronesia','Republic of Korea':'Korea, Republic of', 'Korea':"Korea (Democratic People's Republic of)",'The former Yugoslav republic of Macedonia':'North Macedonia','Venezuela (Bolivarian Republic of)':'Venezuela'})
 
-
-########## Creation of a new columns longitude and latitude ##########
 df = pd.merge(df, unique_countries, on='Country', how='left')
 
 ########## 1. Average life expectancy and population over the years ##########
@@ -86,11 +81,12 @@ fig1.update_layout(
     title_text="Average Life Expectancy and Population Over Time",
     font=dict(size=12),
     width=1500,
-    height=600,
+    height=700,
     margin=dict(l=20, r=20, t=60, b=20),
 )
 
 st.plotly_chart(fig1, use_container_width=True)
+st.write("Between 2000 and 2015 we can see that the average life expectancy has increased from 67 to 72 years. For the average population, it is inconsistent over time, in fact we can see ups and downs,especially during 2008 and 2010")
 
 ########## 2. Life Expectancy over the years of the top 10 and bottom 10 countries ##########
 
@@ -115,6 +111,7 @@ fig2.update_layout(
     margin=dict(l=20, r=20, t=60, b=20))
 
 st.plotly_chart(fig2, use_container_width=True)
+st.write('The top 5 countries having the best average on life expectanvcy over the years are France, Sweeden, Iceland, Japan and Switzerland. The bottom 5 countries having the worrt average on life expectancy over the years are Sierra Leone, Malawi, Angola, Central African Republic and Lesotho.We can notice that the top 5 countries have an increasing on life expectancy (from 81-88) but it stabilises from 2009, whereas for the bottom 5 we can see a considerable growth (from 39 to 51 for certain countries). We can also notice that the top 5 countries belong to the northern hemisphere unlike the bottom 5 that are African Countries.')
 
 ########## 3. Violin Plot for Life Expectancy by Continent ##########
 
@@ -133,6 +130,7 @@ fig3.update_layout(
 )
 
 st.plotly_chart(fig3, use_container_width=True)
+st.write('We can conclude that Africa is the continent where life expectancy is low, so the authorities should concentrate on this continent. The second continent having a low average is Asia.')
 
 ########## 4. Pie chart for the distribution of countries by Status ##########
 
@@ -155,6 +153,7 @@ fig4.update_layout(
 )
 
 st.plotly_chart(fig4, use_container_width=True)
+st.write('This dataset contains 17.4% of develoved countries and 82.6% of developping countries. This is a good ratio because usually it is developpping countries that have less life expectancy.')
 
 ########## 5. Comparing the GDP from 2000 to 2015 by the status ##########
 
@@ -166,6 +165,7 @@ fig5 = px.bar(df_gdp_avg, x='Status', y='GDP', color='Status', title='Average GD
 fig5.update_layout(xaxis_title='Year', yaxis_title='Average GDP (USD)', width=1200, height=800)
 
 st.plotly_chart(fig5, use_container_width=True)
+st.write('Over the years there is a big gap between the GDP of developed countries and developing countries taking into account the fact that  we have only 17% of developped countries.The gap between GDP and status is considerable. In 2000 we have a gap of 12 842 USD to 20 057 in 2014. There is an increase of GDP on both sides, but the increase is greater for developed countries.')
 
 ########## 6. Comparing the life expectancy from 2000 to 2015 by the status ##########
 
@@ -176,11 +176,12 @@ fig6 = px.box(df, x='Status', y='Life expectancy ',title='Life Expectancy Distri
 fig6.update_layout(
     xaxis_title='Development Status',
     yaxis_title='Life Expectancy',
-    width=1200,
-    height=1200
+    width=1500,
+    height=1000
 )
 
 st.plotly_chart(fig6, use_container_width=True)
+st.write('We can notice that there is an evolution of the life expactancy on both sides but for developing countries the values are more scattered than for developed countries where it is concentrated.')
 
 ########## 7. Correlation map in order to study the columns that are influencing the life expectancy ##########
 
@@ -199,6 +200,7 @@ fig7 = px.imshow(
 )
 
 st.plotly_chart(fig7, use_container_width=True)
+st.write("From this correlation matrix we can see that Schooling, Income composition of ressources and BMI are highly corelated to life expectancy. It means that it influences the growth of life expectancy. Let's concentrate on the analysis of these columns.")
 
 ########## 8. Correlation between schooling and life expectancy by continent ##########
 
@@ -209,7 +211,7 @@ fig8 = px.scatter(df, x='Schooling', y='Life expectancy ', trendline="ols",title
 fig8.update_layout(
     xaxis_title='Years of Schooling',
     yaxis_title='Life Expectancy',
-    width=1800,
+    width=1500,
     height=1000,
 )
 
@@ -219,6 +221,7 @@ fig8.update_traces(
 )
 
 st.plotly_chart(fig8, use_container_width=True)
+st.write('We can see that we have a cleary correlation line between schooling and Life expectancy. The more the years of schooling is the better is life expectancy.')
 
 ########## 9. Correlation between income ressources and life expectancy by continent in 2014 ##########
 
@@ -231,12 +234,13 @@ fig9 = px.scatter(df_2014, x='Income composition of resources', y='Life expectan
 fig9.update_layout(
     xaxis_title='Income Composition of Resources',
     yaxis_title='Life Expectancy',
-    width=1800,
+    width=1500,
     height=1000,
 )
 fig9.update_traces(marker=dict(size=8))
 
 st.plotly_chart(fig9, use_container_width=True)
+st.write('Here we are only concentrating in 2014 because 2015 has many missing values, moreover it enables to clealy see the correlation. We can note that most contries from Africa have an Income composition resouces of 0.34-0.59 and a life expectancy of 48-68. For European countries we have a higher income composition of ressources and a better life expectancy.This explains the correlation between both the criterias, the more the income composition of ressources is the better is the life expectancy.')
 
 ########## 10. Average BMI by continent ##########
 
@@ -248,11 +252,12 @@ fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation
 fig10.update_layout(
     xaxis_title='Continent',
     yaxis_title='Average BMI',
-    width=1800,
+    width=1500,
     height=1000,
 )
 
 st.plotly_chart(fig10, use_container_width=True)
+st.write('The body mass index (BMI) is a measure that uses your height and weight to work out if your weight is healthy.Compared to the other countinents Africa has the least average BMI score.This can explain the fact that it has a less life expectancy.Indeed a less BMI means that they are unhealthy. This can be caused by malnutrition and provoke earlier death.')
 
 ########## 11. Thinness between 1-19 years old accross countries ##########
 
@@ -283,6 +288,7 @@ fig11.update_layout(
 )
 
 st.plotly_chart(fig11, use_container_width=True)
+st.write('In order to analyse our hypothesis made on the last visual we have made this map representing thinness between 1-19 years old accross countries.We can see that South Asian countries (like India, Pakistan) have the highest number of thinness between 1-19 year old. Compared to others, African countries are also having a relatively high number of thinness between 1-19 year old but we can also see that this has improved a little over the years. This can be an explaination for the BMI value.')
 
 ########## 12. Violin plot on Alcohol Consumption by continent ##########
 
@@ -296,11 +302,12 @@ fig12.update_layout(
     legend_title='Continent',
     font=dict(size=12),
     width=1500,
-    height=1200,
+    height=1000,
     margin=dict(l=20, r=20, t=60, b=20),
 )
 
 st.plotly_chart(fig12, use_container_width=True)
+st.write('Europe is the continent where the alcohol consumtion is high compared to other continents. We can also see that it is highly spreaded.')
 
 ########## 13. Comparision on the evolution of HIV and Measles ##########
 
@@ -320,7 +327,7 @@ fig13.update_layout(
     title='Number of Deaths by HIV and Measles (2000-2015)',
     xaxis_title='Year',
     yaxis_title='Number of Deaths',
-    width=1800,
+    width=1500,
     height=1000,
 )
 fig13.update_xaxes(tickmode='linear')
@@ -329,6 +336,7 @@ fig13.update_xaxes( title_text='Year', row=2, col=1)
 fig13.update_yaxes( title_text='Number of Deaths')
 
 st.plotly_chart(fig13, use_container_width=True)
+st.write('Health wise, world wide we can see there is significant fall in the number of HIV and Measles. This decrease can explain the increase of life expectancy world wide.')
 
 ########## 14. Map on the evolution of Adult Mortality ##########
 
@@ -359,6 +367,7 @@ fig14.update_layout(
 )
 
 st.plotly_chart(fig14, use_container_width=True)
+st.write("Over the years African countries and Asian countries have the highest number of adult deaths. This can be explained by health developpement, malnutitoin and also geo politic situation (we don't have more informations about this third point).")
 
 ########## 15. Map on the evolution of under five death to compare ##########
 
@@ -389,3 +398,4 @@ fig15.update_layout(
 )
 
 st.plotly_chart(fig15, use_container_width=True)
+st.write('Over the years India and China, which are the most populated countries in the world, have a high number of under 5 year old death. We have already seen that India was also the country having the highest numbre of thinness between 1-19. These two elements can be correlated.')
