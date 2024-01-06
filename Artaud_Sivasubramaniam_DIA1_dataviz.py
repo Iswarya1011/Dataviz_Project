@@ -27,7 +27,7 @@ st.markdown(
 )
 
 st.write("<h1 style='text-align: center; color:#3E9DF3; font-size: 80px;'>Dataviz final project</h1>", unsafe_allow_html=True)
-st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>ARTAUD Lucas & SIVASUBRAMANIAM Iswarya DIA 1</h2>", unsafe_allow_html=True)
+st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
 
 ########## Context and motivation ##########
 
@@ -75,8 +75,8 @@ st.header('Dataset Analysis', divider='blue')
 df = pd.read_csv("Life Expectancy Data.csv")
 st.write('#### The dataset:')
 df
-st.write('#### The shape:',df.shape)
-st.write('#### The nan values:',df.isna().sum())
+st.write('#### The shape:', df.shape)
+st.write('#### The nan values:', df.isna().sum())
 
 
 ########## Creation of new columns ##########
@@ -133,15 +133,15 @@ fig1.update_layout(
 )
 
 st.plotly_chart(fig1, use_container_width=True)
-st.write("<div class='text-comments'>Between 2000 and 2015 we can see that the average life expectancy has increased from 67 to 72 years. For the average population, it is inconsistent over time, in fact we can see ups and downs,especially during 2008 and 2010", unsafe_allow_html=True)
+st.write("<div class='text-comments'>Between 2000 and 2015, we can see that the average life expectancy has increased from 67 to 72 years. For the average population, it is inconsistent over time. In fact, we can observe ups and downs, especially during 2008 and 2010.", unsafe_allow_html=True)
 
 ########## 2. Life Expectancy over the years of the top 5 and bottom 5 countries ##########
 
 st.subheader('2. Life Expectancy over the years of the top 5 and bottom 5 countries', divider='violet')
 
 average_life_expectancy = df.groupby('Country')['Life expectancy '].mean().reset_index() # calculate the average life expectancy
-top5_countries = average_life_expectancy.nlargest(5, 'Life expectancy ') # take the top 10 average life expectancy
-bottom5_countries = average_life_expectancy.nsmallest(5, 'Life expectancy ') # take the bottom 10 average life expectancy
+top5_countries = average_life_expectancy.nlargest(5, 'Life expectancy ') # take the top 5 average life expectancy
+bottom5_countries = average_life_expectancy.nsmallest(5, 'Life expectancy ') # take the bottom 5 average life expectancy
 
 # Filtering the Original DataFrame for the Selected Countries
 selected_countries = top5_countries['Country'].tolist() + bottom5_countries['Country'].tolist()
@@ -160,7 +160,7 @@ fig2.update_layout(
     margin=dict(l=20, r=20, t=60, b=20))
 
 st.plotly_chart(fig2, use_container_width=True)
-st.write('<div class="text-comments">The top 5 countries having the best average on life expectanvcy over the years are France, Sweeden, Iceland, Japan and Switzerland. The bottom 5 countries having the worrt average on life expectancy over the years are Sierra Leone, Malawi, Angola, Central African Republic and Lesotho.We can notice that the top 5 countries have an increasing on life expectancy (from 81-88) but it stabilises from 2009, whereas for the bottom 5 we can see a considerable growth (from 39 to 51 for certain countries). We can also notice that the top 5 countries belong to the northern hemisphere unlike the bottom 5 that are African Countries.', unsafe_allow_html=True)
+st.write('<div class="text-comments">The top 5 countries having the best average on life expectancy over the years are France, Sweden, Iceland, Japan, and Switzerland. The bottom 5 countries having the worst average on life expectancy over the years are Sierra Leone, Malawi, Angola, Central African Republic, and Lesotho. We can notice that the top 5 countries have an increase in life expectancy (from 81-88), but it stabilises from 2009, whereas for the bottom 5, we can see a considerable growth (from 39 to 51 for certain countries). We can also notice that the top 5 countries belong to the northern hemisphere, unlike the bottom 5 that are African countries.', unsafe_allow_html=True)
 
 ########## 3. Violin Plot for Life Expectancy by Continent ##########
 
@@ -206,7 +206,7 @@ fig4.update_layout(
 )
 
 st.plotly_chart(fig4, use_container_width=True)
-st.write('<div class="text-comments">This dataset contains 17.4% of develoved countries and 82.6% of developping countries. This is a good ratio because usually it is developpping countries that have less life expectancy.', unsafe_allow_html=True)
+st.write('<div class="text-comments">This dataset contains 17.4% of developed countries and 82.6% of developing countries. This is a notable ratio because, typically, developing countries have lower life expectancy so we can study them in detail.', unsafe_allow_html=True)
 
 ########## 5. Comparing the GDP from 2000 to 2015 by the status ##########
 
@@ -226,7 +226,7 @@ fig5.update_layout(
     yaxis=dict( range=[0, 35000]))
 
 st.plotly_chart(fig5, use_container_width=True)
-st.write('<div class="text-comments">Over the years there is a big gap between the GDP of developed countries and developing countries taking into account the fact that  we have only 17% of developped countries. The gap between GDP and status is considerable. In 2000 we have a gap of 12 842 USD to 20 057 in 2014. There is an increase of GDP on both sides, but the increase is greater for developed countries.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Over the years, there is a significant gap between the GDP of developed countries and developing countries, taking into account the fact that we have only 17% of developed countries. The gap between GDP and status is considerable. In 2000, we have a gap of 12,842 USD to 20,057 in 2014. There is an increase in GDP on both sides, but the increase is greater for developed countries.', unsafe_allow_html=True)
 
 ########## 6. Comparing the life expectancy from 2000 to 2015 by the status ##########
 
@@ -246,7 +246,7 @@ fig6.update_layout(
 )
 
 st.plotly_chart(fig6, use_container_width=True)
-st.write('<div class="text-comments">We can notice that there is an evolution of the life expectancy on both sides but for developing countries the values are more scattered than for developed countries where it is concentrated.', unsafe_allow_html=True)
+st.write('<div class="text-comments">We notice an evolution in life expectancy on both sides, but values are more scattered in developing countries compared to the concentrated values in developed countries.', unsafe_allow_html=True)
 
 ########## 7. Correlation map in order to study the columns that are influencing the life expectancy ##########
 st.header('Correlation study', divider='blue')
@@ -265,7 +265,7 @@ fig7 = px.imshow(
 )
 fig7.update_layout(title_font=dict(size=24))
 st.plotly_chart(fig7, use_container_width=True)
-st.write("<div class='text-comments'>From this correlation matrix we can see that Schooling, Income composition of ressources and BMI are highly corelated to life expectancy. It means that it influences the growth of life expectancy. Let's concentrate on the analysis of these columns.", unsafe_allow_html=True)
+st.write("<div class='text-comments'>From this correlation matrix, we can see that Schooling, Income composition of resources, and BMI are highly correlated to life expectancy. It means that they influence the growth of life expectancy. Let's concentrate on the analysis of these columns.", unsafe_allow_html=True)
 
 ########## 8. Correlation between schooling and life expectancy by continent ##########
 
@@ -289,7 +289,7 @@ fig8.update_traces(
 )
 
 st.plotly_chart(fig8, use_container_width=True)
-st.write('<div class="text-comments">We can see that we have a cleary correlation line between schooling and Life expectancy. The more the years of schooling is the better is life expectancy.', unsafe_allow_html=True)
+st.write('<div class="text-comments">We can see that we have a clear correlation line between schooling and life expectancy. The more the years of schooling are, the better life expectancy is.', unsafe_allow_html=True)
 
 ########## 9. Correlation between income ressources and life expectancy by continent in 2014 ##########
 
@@ -310,7 +310,7 @@ fig9.update_layout(
 fig9.update_traces(marker=dict(size=8))
 
 st.plotly_chart(fig9, use_container_width=True)
-st.write('<div class="text-comments">Here we are only concentrating in 2014 because 2015 has many missing values, moreover it enables to clealy see the correlation. We can note that most contries from Africa have an Income composition resouces of 0.34-0.59 and a life expectancy of 48-68. For European countries we have a higher income composition of ressources and a better life expectancy. This explains the correlation between both the criterias, the more the income composition of ressources is the better is the life expectancy.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Here we are only concentrating on 2014 because 2015 has many missing values; moreover, it enables us to clearly see the correlation. We can note that most countries in Africa have an Income Composition Resources of 0.34-0.59 and a life expectancy of 48-68. For European countries, we have a higher income composition of resources and a better life expectancy. This explains the correlation between both criteria; the more the income composition of resources, the better is the life expectancy.', unsafe_allow_html=True)
 
 ########## 10. Average BMI by continent ##########
 st.header('Health study', divider='blue')
@@ -330,7 +330,7 @@ fig10.update_layout(
 )
 
 st.plotly_chart(fig10, use_container_width=True)
-st.write('<div class="text-comments">The body mass index (BMI) is a measure that uses your height and weight to work out if your weight is healthy.Compared to the other countinents Africa has the least average BMI score. This can explain the fact that it has a less life expectancy.Indeed a less BMI means that they are unhealthy. This can be caused by malnutrition and provoke earlier death.', unsafe_allow_html=True)
+st.write('<div class="text-comments">The body mass index (BMI) is a measure that uses your height and weight to work out if your weight is healthy. Compared to the other continents, Africa has the lowest average BMI score. This can explain the fact that it has a lower life expectancy. Indeed, a lower BMI means that they are unhealthy. This can be caused by malnutrition and may provoke earlier death.', unsafe_allow_html=True)
 
 ########## 11. Thinness between 1-19 years old accross countries ##########
 
@@ -364,7 +364,7 @@ fig11.update_layout(
 )
 
 st.plotly_chart(fig11, use_container_width=True)
-st.write('<div class="text-comments">In order to analyse our hypothesis made on the last visual we have made this map representing thinness between 1-19 years old accross countries. We can see that South Asian countries (like India, Pakistan) have the highest number of thinness between 1-19 year old. Compared to others, African countries are also having a relatively high number of thinness between 1-19 year old but we can also see that this has improved a little over the years. This can be an explaination for the BMI value.', unsafe_allow_html=True)
+st.write('<div class="text-comments">In order to analyze our hypothesis made in the last visual, we have created this map representing thinness between 1-19 years old across countries. We can see that South Asian countries (like India, Pakistan) have the highest number of thinness between 1-19 years old. Compared to others, African countries also have a relatively high number of thinness between 1-19 years old, but we can also see that this has improved a little over the years. This can be an explanation for the BMI value.', unsafe_allow_html=True)
 
 ########## 12. Violin plot on Alcohol Consumption by continent ##########
 
@@ -384,7 +384,7 @@ fig12.update_layout(
 )
 
 st.plotly_chart(fig12, use_container_width=True)
-st.write('<div class="text-comments">Europe is the continent where the alcohol consumtion is high compared to other continents. We can also see that it is highly spreaded.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Europe is the continent where alcohol consumption is high compared to other continents. We can also see that it is highly spread.', unsafe_allow_html=True)
 
 ########## 13. Comparision on the evolution of HIV and Measles ##########
 
@@ -416,7 +416,7 @@ fig13.update_xaxes( title_text='Year', row=2, col=1)
 fig13.update_yaxes( title_text='Number of Deaths')
 
 st.plotly_chart(fig13, use_container_width=True)
-st.write('<div class="text-comments">Health wise, world wide we can see there is significant fall in the number of HIV and Measles. This decrease can explain the increase of life expectancy world wide.', unsafe_allow_html=True)
+st.write('<div class="text-comments"> Healthwise, worldwide for this 2 diseases, we can see there is a significant fall in the number of HIV and measles. This decrease can explain the increase in life expectancy worldwide.', unsafe_allow_html=True)
 
 ########## 14. Map on the evolution of Adult Mortality ##########
 
@@ -449,7 +449,7 @@ fig14.update_layout(
 )
 
 st.plotly_chart(fig14, use_container_width=True)
-st.write("<div class='text-comments'>Over the years African countries and Asian countries have the highest number of adult deaths. This can be explained by health developpement, malnutitoin and also geo politic situation (we don't have more informations about this third point).", unsafe_allow_html=True)
+st.write("<div class='text-comments'>Over the years, African countries and Asian countries have the highest number of adult deaths. This can be explained by health development, malnutrition, and also geopolitical situations (we don't have more information about this third point).", unsafe_allow_html=True)
 
 ########## 15. Map on the evolution of under five death to compare ##########
 
@@ -482,7 +482,11 @@ fig15.update_layout(
 )
 
 st.plotly_chart(fig15, use_container_width=True)
-st.write('<div class="text-comments">Over the years India and China, which are the most populated countries in the world, have a high number of under 5 year old death. We have already seen that India was also the country having the highest numbre of thinness between 1-19. These two elements can be correlated.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Over the years, India and China, which are the most populated countries in the world, have a high number of under-5-year-old deaths. We have already seen that India also had the highest number of thinness between 1-19. These two elements can be correlated.', unsafe_allow_html=True)
 
 ########## Conclusion ##########
 st.header('Conclusion', divider='blue')
+
+st.write('<div class="text-comments">In conclusion, this study enabled us to see the evolution of life expectancy in different parts of the world and, more importantly, to identify the main factors influencing it and the continents/countries facing difficulties. Even though overall life expectancy has increased between 2000 and 2015, some parts of the world are less developed than others in certain aspects.', unsafe_allow_html=True)
+st.write('<div class="text-comments">There is a significant gap between developed and developing countries, especially in GDP and life expectancy. Notably, Africa stands out with the lowest average life expectancy, demanding focused attention. To enhance life expectancy, prioritizing investments in education and income generation is imperative.', unsafe_allow_html=True)
+st.write('<div class="text-comments">On the health aspect, we observe significant progress in the reduction of deaths from HIV and measles over the past 15 years. However, challenges persist in African and Asian countries, marked by lower average BMI, high rates of thinness among 1-19-year-olds, and elevated under-5 mortality. Authorities should concentrate on developing African and Asian countries to elevate life expectancy.', unsafe_allow_html=True)
