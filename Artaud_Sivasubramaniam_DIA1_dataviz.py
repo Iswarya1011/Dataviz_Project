@@ -1,12 +1,12 @@
 import pandas as pd
 import streamlit as st
-import pycountry_convert as pc 
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.subplots as sp
 from geopy.geocoders import Nominatim
 
 df = pd.read_csv("Life Expectancy Data.csv")
+unique_countries = pd.read_csv("countries.csv")
 
 ########## Title ##########
 
@@ -57,31 +57,8 @@ continent_name = {
 # Replacing the special cases
 df['Country'] = df['Country'].replace({'Bolivia (Plurinational State of)': 'Bolivia', 'Iran (Islamic Republic of)': 'Iran', 'Micronesia (Federated States of)':'Micronesia','Republic of Korea':'Korea, Republic of', 'Korea':"Korea (Democratic People's Republic of)",'The former Yugoslav republic of Macedonia':'North Macedonia','Venezuela (Bolivarian Republic of)':'Venezuela'})
 
-def convert(row):
-    # convert country name to country code
-    country_code = pc.country_name_to_country_alpha2(row.Country,cn_name_format="default")
-    # convert country_code to continent code
-    try:
-        continent_code = pc.country_alpha2_to_continent_code(country_code)
-        return continent_name.get(continent_code, None)
-    except :
-        return None
-
-df['Continent'] = df.apply(convert,axis=1)
 
 ########## Creation of a new columns longitude and latitude ##########
-
-unique_countries = pd.DataFrame(df['Country'].unique(), columns=['Country'])
-geolocator = Nominatim(user_agent="my_geocoder")
-
-def get_lat_lon(country):
-    location = geolocator.geocode(country, timeout=5)
-    if location:
-        return pd.Series({'latitude': location.latitude, 'longitude': location.longitude})
-    else:
-        return pd.Series({'latitude': None, 'longitude': None})
-
-unique_countries[['latitude', 'longitude']] = unique_countries['Country'].apply(get_lat_lon)
 df = pd.merge(df, unique_countries, on='Country', how='left')
 
 ########## 1. Average life expectancy and population over the years ##########
