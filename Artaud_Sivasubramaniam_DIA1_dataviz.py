@@ -227,7 +227,7 @@ fig5.update_layout(
     yaxis=dict( range=[0, 35000]))
 
 st.plotly_chart(fig5, use_container_width=True)
-st.write('<div class="text-comments">Over the years there is a big gap between the GDP of developed countries and developing countries taking into account the fact that  we have only 17% of developped countries.The gap between GDP and status is considerable. In 2000 we have a gap of 12 842 USD to 20 057 in 2014. There is an increase of GDP on both sides, but the increase is greater for developed countries.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Over the years there is a big gap between the GDP of developed countries and developing countries taking into account the fact that  we have only 17% of developped countries. The gap between GDP and status is considerable. In 2000 we have a gap of 12 842 USD to 20 057 in 2014. There is an increase of GDP on both sides, but the increase is greater for developed countries.', unsafe_allow_html=True)
 
 ########## 6. Comparing the life expectancy from 2000 to 2015 by the status ##########
 
@@ -311,7 +311,7 @@ fig9.update_layout(
 fig9.update_traces(marker=dict(size=8))
 
 st.plotly_chart(fig9, use_container_width=True)
-st.write('<div class="text-comments">Here we are only concentrating in 2014 because 2015 has many missing values, moreover it enables to clealy see the correlation. We can note that most contries from Africa have an Income composition resouces of 0.34-0.59 and a life expectancy of 48-68. For European countries we have a higher income composition of ressources and a better life expectancy.This explains the correlation between both the criterias, the more the income composition of ressources is the better is the life expectancy.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Here we are only concentrating in 2014 because 2015 has many missing values, moreover it enables to clealy see the correlation. We can note that most contries from Africa have an Income composition resouces of 0.34-0.59 and a life expectancy of 48-68. For European countries we have a higher income composition of ressources and a better life expectancy. This explains the correlation between both the criterias, the more the income composition of ressources is the better is the life expectancy.', unsafe_allow_html=True)
 
 ########## 10. Average BMI by continent ##########
 st.header('Health study', divider='blue')
@@ -331,7 +331,7 @@ fig10.update_layout(
 )
 
 st.plotly_chart(fig10, use_container_width=True)
-st.write('<div class="text-comments">The body mass index (BMI) is a measure that uses your height and weight to work out if your weight is healthy.Compared to the other countinents Africa has the least average BMI score.This can explain the fact that it has a less life expectancy.Indeed a less BMI means that they are unhealthy. This can be caused by malnutrition and provoke earlier death.', unsafe_allow_html=True)
+st.write('<div class="text-comments">The body mass index (BMI) is a measure that uses your height and weight to work out if your weight is healthy.Compared to the other countinents Africa has the least average BMI score. This can explain the fact that it has a less life expectancy.Indeed a less BMI means that they are unhealthy. This can be caused by malnutrition and provoke earlier death.', unsafe_allow_html=True)
 
 ########## 11. Thinness between 1-19 years old accross countries ##########
 
@@ -365,7 +365,7 @@ fig11.update_layout(
 )
 
 st.plotly_chart(fig11, use_container_width=True)
-st.write('<div class="text-comments">In order to analyse our hypothesis made on the last visual we have made this map representing thinness between 1-19 years old accross countries.We can see that South Asian countries (like India, Pakistan) have the highest number of thinness between 1-19 year old. Compared to others, African countries are also having a relatively high number of thinness between 1-19 year old but we can also see that this has improved a little over the years. This can be an explaination for the BMI value.', unsafe_allow_html=True)
+st.write('<div class="text-comments">In order to analyse our hypothesis made on the last visual we have made this map representing thinness between 1-19 years old accross countries. We can see that South Asian countries (like India, Pakistan) have the highest number of thinness between 1-19 year old. Compared to others, African countries are also having a relatively high number of thinness between 1-19 year old but we can also see that this has improved a little over the years. This can be an explaination for the BMI value.', unsafe_allow_html=True)
 
 ########## 12. Violin plot on Alcohol Consumption by continent ##########
 
