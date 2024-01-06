@@ -26,9 +26,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title('Dataviz final project')
-st.header('ARTAUD Lucas & SIVASUBRAMANIAM Iswarya DIA 1', divider=False)
-
+st.write("<h1 style='text-align: center; color:#3E9DF3; font-size: 80px;'>Dataviz final project</h1>", unsafe_allow_html=True)
+st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>ARTAUD Lucas & SIVASUBRAMANIAM Iswarya DIA 1</h2>", unsafe_allow_html=True)
 
 ########## Context and motivation ##########
 
