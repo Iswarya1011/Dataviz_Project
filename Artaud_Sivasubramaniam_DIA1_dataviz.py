@@ -149,7 +149,7 @@ bottom5_countries = average_life_expectancy.nsmallest(5, 'Life expectancy ') # t
 selected_countries = top5_countries['Country'].tolist() + bottom5_countries['Country'].tolist()
 filtered_df = df[df['Country'].isin(selected_countries)]
 
-fig2 = px.line(filtered_df, x='Year', y='Life expectancy ', color='Country',title='Life Expectancy Over the Years for the top 5 and bottom 5 Selected Countries')
+fig2 = px.line(filtered_df, x='Year', y='Life expectancy ', color='Country',title='Life Expectancy over the Years for the top 5 and bottom 5 Countries')
 fig2.update_layout(
     xaxis_title='Year',
     yaxis_title='Life Expectancy',
@@ -186,7 +186,7 @@ st.write('<div class="text-comments">We can conclude that Africa is the continen
 
 ########## 4. Pie chart for the distribution of countries by Status ##########
 
-st.subheader('4. Pie chart for the distribution of countries by Status', divider='violet')
+st.subheader('4. Pie chart repesenting the distribution of Countries by Status', divider='violet')
 
 fig4 = px.pie(
     df, 
@@ -216,7 +216,7 @@ st.subheader('5. Comparing the GDP from 2000 to 2015 by status', divider='violet
 
 df_gdp_avg=df.groupby(['Year', 'Status'])['GDP'].mean().reset_index()
 
-fig5 = px.bar(df_gdp_avg, x='Status', y='GDP', color='Status', title='Average GDP by Country Status Over Years',animation_frame='Year', barmode='group')
+fig5 = px.bar(df_gdp_avg, x='Status', y='GDP', color='Status', title='Average GDP by Country Status over the Years',animation_frame='Year', barmode='group')
 fig5.update_layout(
     xaxis_title='Year', 
     yaxis_title='Average GDP (USD)', 
@@ -234,7 +234,7 @@ st.write('<div class="text-comments">Over the years, there is a significant gap 
 
 st.subheader('6. Comparing the life expectancy from 2000 to 2015 by status', divider='violet')
 
-fig6 = px.box(df, x='Status', y='Life expectancy ',title='Life Expectancy Distribution by Status (2000 to 2015)',animation_frame='Year',category_orders={'Year': sorted(df['Year'].unique())},labels={'Life expectancy': 'Life Expectancy', 'Status': 'Development Status'})
+fig6 = px.box(df, x='Status', y='Life expectancy ',title='Life Expectancy Distribution by Country Status (2000 to 2015)',animation_frame='Year',category_orders={'Year': sorted(df['Year'].unique())},labels={'Life expectancy': 'Life Expectancy', 'Status': 'Development Status'})
 
 fig6.update_layout(
     xaxis_title='Development Status',
@@ -271,7 +271,7 @@ st.write("<div class='text-comments'>From this correlation matrix, we can see th
 
 ########## 8. Correlation between schooling and life expectancy ##########
 
-st.subheader('8. Correlation between schooling and life expectancy by continent', divider='violet')
+st.subheader('8. Correlation between schooling and life expectancy', divider='violet')
 
 fig8 = px.scatter(df, x='Schooling', y='Life expectancy ', trendline="ols",title='Scatter Plot of Schooling vs Life Expectancy',labels={'Schooling': 'Years of Schooling', 'Life expectancy ': 'Life Expectancy'})
 
@@ -299,7 +299,7 @@ st.subheader('9. Correlation between income ressources and life expectancy by co
 
 df_2014 = df[df['Year'] == 2014]
 
-fig9 = px.scatter(df_2014, x='Income composition of resources', y='Life expectancy ', color='Continent',hover_name='Country', title='Income Composition vs Life Expectancy',labels={'Income composition of resources': 'Income Composition of Resources', 'Life expectancy': 'Life Expectancy'})
+fig9 = px.scatter(df_2014, x='Income composition of resources', y='Life expectancy ', color='Continent',hover_name='Country', title='Income Composition vs Life Expectancy in 2014',labels={'Income composition of resources': 'Income Composition of Resources', 'Life expectancy': 'Life Expectancy'})
 
 fig9.update_layout(
     xaxis_title='Income Composition of Resources',
@@ -320,7 +320,7 @@ st.subheader('10. Average BMI by continent over the years', divider='violet')
 
 df_avg_bmi = df.groupby(['Continent', 'Year'])[' BMI '].mean().reset_index()
 
-fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation_frame='Year',title='Average BMI by Continent Over the Years (2000-2015)',labels={' BMI ': 'Average BMI', 'Continent': 'Continent'},range_y=[df_avg_bmi[' BMI '].min(), df_avg_bmi[' BMI '].max()])
+fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation_frame='Year',title='Average BMI by Continent over the Years (2000-2015)',labels={' BMI ': 'Average BMI', 'Continent': 'Continent'},range_y=[df_avg_bmi[' BMI '].min(), df_avg_bmi[' BMI '].max()])
 fig10.update_layout(
     xaxis_title='Continent',
     yaxis_title='Average BMI',
@@ -372,7 +372,7 @@ st.write('<div class="text-comments">In order to analyze our hypothesis made in 
 
 st.subheader('12. Violin plot on Alcohol Consumption by continent', divider='violet')
 
-fig12 = px.violin(df, x='Continent', y='Alcohol', color='Continent',box=True,title='Violin plot on Alcohol Consumption by continent')
+fig12 = px.violin(df, x='Continent', y='Alcohol', color='Continent',box=True,title='Violin plot on Alcohol Consumption by Continent')
  
 fig12.update_layout(
     xaxis_title='Continent',
