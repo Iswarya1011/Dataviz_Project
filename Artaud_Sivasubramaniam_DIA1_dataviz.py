@@ -168,7 +168,7 @@ st.write('<div class="text-comments">The top 5 countries having the best average
 
 st.subheader('3. Violin Plot for Life Expectancy by Continent', divider='violet')
 
-fig3 = px.violin(df, x='Continent', y='Life expectancy ', color='Continent', box=True, title='Violin Plot for Life Expectancy and Population by Continent')
+fig3 = px.violin(df, x='Continent', y='Life expectancy ', color='Continent', box=True, title='Violin Plot for Life Expectancy by Continent')
 
 fig3.update_layout(
     xaxis_title='Continent',
@@ -320,7 +320,7 @@ st.subheader('10. Average BMI by continent over the years', divider='violet')
 
 df_avg_bmi = df.groupby(['Continent', 'Year'])[' BMI '].mean().reset_index()
 
-fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation_frame='Year',title='Average BMI Over the Years by Continent (2000-2015)',labels={' BMI ': 'Average BMI', 'Continent': 'Continent'},range_y=[df_avg_bmi[' BMI '].min(), df_avg_bmi[' BMI '].max()])
+fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation_frame='Year',title='Average BMI by Continent Over the Years (2000-2015)',labels={' BMI ': 'Average BMI', 'Continent': 'Continent'},range_y=[df_avg_bmi[' BMI '].min(), df_avg_bmi[' BMI '].max()])
 fig10.update_layout(
     xaxis_title='Continent',
     yaxis_title='Average BMI',
