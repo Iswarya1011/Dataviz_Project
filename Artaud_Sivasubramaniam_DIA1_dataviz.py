@@ -28,6 +28,8 @@ st.markdown(
 
 st.write("<h1 style='text-align: center; color:#3E9DF3; font-size: 80px;'>Dataviz final project</h1>", unsafe_allow_html=True)
 st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
+st.write('## The GitHub link : https://github.com/Iswarya1011/Dataviz_Project')
+
 
 ########## Context and motivation ##########
 
@@ -38,7 +40,7 @@ st.write('<div class="text-comments">This dataset encompasses health factors for
 st.write("<div class='text-comments'> The project's motivation is to analyze various factors influencing life expectancy, comparing them on different scales such as continents and development statuses.", unsafe_allow_html=True)
 st.write('<div class="text-comments">The objective is to gain insights into factors affecting life expectancy, guiding public health interventions and policies. Targeted healthcare initiatives could be guided, for instance, by identifying particular regions or demographic groups experiencing challenges with life expectancy. Furthermore, knowledge of how social determinants, economic variables, and immunizations affect life expectancy can support evidence-based decision-making at the national and international levels.', unsafe_allow_html=True)
 
-st.write('#### The link : https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who')
+st.write('### The link : https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who')
 
 ########## Columns ##########
 st.header('Columns', divider='blue')
@@ -210,7 +212,7 @@ st.write('<div class="text-comments">This dataset contains 17.4% of developed co
 
 ########## 5. Comparing the GDP from 2000 to 2015 by the status ##########
 
-st.subheader('5. Comparing the GDP from 2000 to 2015 by the status', divider='violet')
+st.subheader('5. Comparing the GDP from 2000 to 2015 by status', divider='violet')
 
 df_gdp_avg=df.groupby(['Year', 'Status'])['GDP'].mean().reset_index()
 
@@ -230,7 +232,7 @@ st.write('<div class="text-comments">Over the years, there is a significant gap 
 
 ########## 6. Comparing the life expectancy from 2000 to 2015 by the status ##########
 
-st.subheader('6. Comparing the life expectancy from 2000 to 2015 by the status', divider='violet')
+st.subheader('6. Comparing the life expectancy from 2000 to 2015 by status', divider='violet')
 
 fig6 = px.box(df, x='Status', y='Life expectancy ',title='Life Expectancy Distribution by Status (2000 to 2015)',animation_frame='Year',category_orders={'Year': sorted(df['Year'].unique())},labels={'Life expectancy': 'Life Expectancy', 'Status': 'Development Status'})
 
@@ -267,7 +269,7 @@ fig7.update_layout(title_font=dict(size=24))
 st.plotly_chart(fig7, use_container_width=True)
 st.write("<div class='text-comments'>From this correlation matrix, we can see that Schooling, Income composition of resources, and BMI are highly correlated to life expectancy. It means that they influence the growth of life expectancy. Let's concentrate on the analysis of these columns.", unsafe_allow_html=True)
 
-########## 8. Correlation between schooling and life expectancy by continent ##########
+########## 8. Correlation between schooling and life expectancy ##########
 
 st.subheader('8. Correlation between schooling and life expectancy by continent', divider='violet')
 
@@ -310,15 +312,15 @@ fig9.update_layout(
 fig9.update_traces(marker=dict(size=8))
 
 st.plotly_chart(fig9, use_container_width=True)
-st.write('<div class="text-comments">Here we are only concentrating on 2014 because 2015 has many missing values; moreover, it enables us to clearly see the correlation. We can note that most countries in Africa have an Income Composition Resources of 0.34-0.59 and a life expectancy of 48-68. For European countries, we have a higher income composition of resources and a better life expectancy. This explains the correlation between both criteria; the more the income composition of resources, the better is the life expectancy.', unsafe_allow_html=True)
+st.write('<div class="text-comments">Here we are only concentrating on 2014 because 2015 has many missing values, moreover, it enables us to clearly see the correlation. We can note that most countries in Africa have an Income Composition Resources of 0.34-0.59 and a life expectancy of 48-68. For European countries, we have a higher income composition of resources and a better life expectancy. This explains the correlation between both criteria, the more the income composition of resources, the better is the life expectancy.', unsafe_allow_html=True)
 
 ########## 10. Average BMI by continent ##########
 st.header('Health study', divider='blue')
-st.subheader('10. Average BMI by continent', divider='violet')
+st.subheader('10. Average BMI by continent over the years', divider='violet')
 
 df_avg_bmi = df.groupby(['Continent', 'Year'])[' BMI '].mean().reset_index()
 
-fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation_frame='Year',title='Average BMI Over the Years by Continent (2000-2014)',labels={' BMI ': 'Average BMI', 'Continent': 'Continent'},range_y=[df_avg_bmi[' BMI '].min(), df_avg_bmi[' BMI '].max()])
+fig10 = px.bar(df_avg_bmi, x='Continent', y=' BMI ', color='Continent',animation_frame='Year',title='Average BMI Over the Years by Continent (2000-2015)',labels={' BMI ': 'Average BMI', 'Continent': 'Continent'},range_y=[df_avg_bmi[' BMI '].min(), df_avg_bmi[' BMI '].max()])
 fig10.update_layout(
     xaxis_title='Continent',
     yaxis_title='Average BMI',
@@ -388,7 +390,7 @@ st.write('<div class="text-comments">Europe is the continent where alcohol consu
 
 ########## 13. Comparision on the evolution of HIV and Measles ##########
 
-st.subheader('13. Comparision on the evolution of HIV and Measles', divider='violet')
+st.subheader('13. Comparision on the evolution of the number of deaths from HIV and Measles', divider='violet')
 
 df_hiv_measles = df.groupby('Year')[[' HIV/AIDS', 'Measles ']].sum().reset_index()
 
@@ -453,7 +455,7 @@ st.write("<div class='text-comments'>Over the years, African countries and Asian
 
 ########## 15. Map on the evolution of under five death to compare ##########
 
-st.subheader('15. Map on the evolution of under five death to compare', divider='violet')
+st.subheader('15. Map on the evolution of under five death', divider='violet')
 
 fig15 = px.choropleth(
     df,
